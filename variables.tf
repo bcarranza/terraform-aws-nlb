@@ -74,7 +74,7 @@ variable "target_ips" {
   EOF
   type = set(object({
     ip_address = string
-    port       = optional(number, null)
+    port       = number
   }))
   default  = []
   nullable = false
