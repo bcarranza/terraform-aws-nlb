@@ -66,6 +66,20 @@ variable "target_group_target_type" {
   description = "The type (`instance`, `ip` or `lambda`) of targets that can be registered with the default target group"
 }
 
+variable "target_ips" {
+  description = <<EOF
+ (Optional) A set of targets to add to the target group. Each value of `targets` block as defined below.
+    (Required) `ip_address` - Specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group, the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10). You can't specify publicly routable IP addresses. Support also IPv6 addresses.
+    (Optional) `port` - The port on which targets receive traffic.
+  EOF
+  type = set(object({
+    ip_address = string
+    port       = optional(number, null)
+  }))
+  default  = []
+  nullable = false
+}
+
 variable "target_group_additional_tags" {
   type        = map(string)
   default     = {}
