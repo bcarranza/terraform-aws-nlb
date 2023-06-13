@@ -77,7 +77,6 @@ variable "target_ips" {
     port       = number
   }))
   default  = []
-  nullable = false
 }
 
 variable "target_group_additional_tags" {
